@@ -3,16 +3,14 @@ import functions
 import os
 
 FILEPATH = "todos.txt"
-# FILEPATH = "/Users/seanyoung/PycharmProjects/pythonProject/web_app1/todos.txt"
-if os.path.exists(FILEPATH):
-    todos = functions.get_todos(FILEPATH)
-else:
-    st.error(f"File not found: {FILEPATH}")
-    todos = []
-
+# Check if the file exists, if not, create it
+if not os.path.exists(FILEPATH):
+    with open(FILEPATH, 'w') as file:
+        file.write("")  # Create an empty file if it doesn't existst.write(f"Current working directory: {os.getcwd()}")
 
 todos = functions.get_todos(FILEPATH)
 
+st.write(f"Current working directory: {os.getcwd()}")
 
 def add_todo():
     todo = st.session_state["new_todo"] + "\n"
